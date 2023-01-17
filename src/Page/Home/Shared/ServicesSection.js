@@ -32,7 +32,7 @@ const ServicesSection = () => {
 
             <ServiceHeader>Our Services</ServiceHeader>
 
-            <div className={`grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 justify-center`}>
+            <div className={`grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 justify-center`}>
                 {
                     services.map((elm,id) => <ServiceCard key={id} servName={elm.name} servDesc={elm.desc} servImg={elm.serviceIcon}></ServiceCard>)
                 }
