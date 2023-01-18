@@ -1,6 +1,6 @@
 import React from 'react';
 import ServiceCard from '../../../Components/Card/ServiceCard';
-import ServiceHeader from '../../../Components/Utilities/ServiceHeader';
+import HeaderName from '../../../Components/Utilities/HeaderName';
 
 const ServicesSection = () => {
 
@@ -30,7 +30,7 @@ const ServicesSection = () => {
     return (
         <section className={`m-[5%]`}>
 
-            <ServiceHeader>Our Services</ServiceHeader>
+            <HeaderName>Our Services</HeaderName>
 
             <div className={`grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4 justify-center`}>
                 {

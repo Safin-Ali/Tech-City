@@ -1,0 +1,18 @@
+[
+    {
+        "category": "Mobile",
+        "icon": "https://i.ibb.co/k9K90v8/android.png"
+    },
+    {
+        "category": "Laptop",
+        "icon": "https://i.ibb.co/tJbXXt0/laptop.png"
+    },
+    {
+        "category": "PC",
+        "icon": "https://i.ibb.co/TH5fJ7p/pc.webp"
+    },
+    {
+        "category": "Smart Watch",
+        "icon": "https://i.ibb.co/xJVdjxw/smartwatch.png"
+    }
+]

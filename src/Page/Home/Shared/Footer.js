@@ -60,8 +60,8 @@ const Footer = () => {
                 {/* Subscribe Feild  */}
                     <div className={`text-center w-[80%] sm:w-[60%] md:w-1/2 lg:w-1/3 mx-auto my-5`}>
                         <div className={`flex`}>
-                            <p className={`bg-bluePrimary text-whitePrimary px-2 py-1.5 rounded-l-sm`}>Subscribe</p>
-                            <input type="text" className={`w-full pl-2 p-1 rounded-r-sm outline-none`}/>
+                            <input type="text" className={`w-full pl-2 p-1 rounded-l-sm outline-none`}/>
+                            <button className={`bg-bluePrimary text-whitePrimary px-2 py-1.5 rounded-r-sm`}>Subscribe</button>
                         </div>
                     </div>
 
