@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const fetchCategories = createAsyncThunk('categories/getCategories',async ()=>{
     try{
-        const res = await axios.get('category.json');
+        const res = await axios.get('https://tech-city.vercel.app/categories');
         return res.data;
     }
     catch(error){

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { fetchCategories } from '../../app/features/categorySlice/categorySlice';
+import Spinner from '../../Components/Spinner/Spinner';
 import useFetch from '../../Hooks/useFetch';
-import BrandsSection from './Shared/BrandsSection';
+import CategoriesSection from './Shared/CategoriesSection';
 import Footer from './Shared/Footer';
 import HeroSection from './Shared/HeroSection';
 import ServicesSection from './Shared/ServicesSection';
@@ -15,7 +16,7 @@ const Home = () => {
         <section>
             <HeroSection></HeroSection>
             <ServicesSection></ServicesSection>
-            <BrandsSection></BrandsSection>
+            <CategoriesSection></CategoriesSection>
             <Footer></Footer>
         </section>
     );
