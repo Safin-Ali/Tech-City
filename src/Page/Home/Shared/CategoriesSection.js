@@ -19,7 +19,7 @@ const CategoriesSection = () => {
 
                     <p>No Data Found</p> :
                     
-                    categoriesData.map(elm => <CategoryCard key={elm._id} icon={elm.icon} category={elm.category}></CategoryCard>)
+                    categoriesData.map(elm => <CategoryCard key={elm._id} icon={elm.icon} description={elm.description} category={elm.category}></CategoryCard>)
                 }
             </div>
         </section>

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import ProdSlide from '../../../Components/Product-Slide/ProdSlide';
+import LoadingSpinner from '../../../Components/Spinner/LoadingSpinner';
+import CarouselWrapper from 'easy-carousel-stack';
 
 const HeroSection = () => {
 
@@ -10,7 +13,9 @@ const HeroSection = () => {
                width:'100%',
                backgroundSize: 'cover',
                backgroundRepeat: 'no-repeat',
-    }
+    };
+
+    const {bannerImages,isLoading} = useSelector(state => state.addtionalImgs);
 
     return (
         <section className={`m-[5%]`}>
@@ -25,7 +30,23 @@ const HeroSection = () => {
 
                 {/* Image Slider Section */}
                 <div className={`basis-1/2 order-1 md:order-none`}>
-                    <ProdSlide></ProdSlide>
+                    {
+                        isLoading ?
+
+                        <LoadingSpinner center={true}></LoadingSpinner> :
+
+                        !bannerImages.length ?
+
+                        <p>no image found</p>
+
+                        : <CarouselWrapper itemName={`banner-product`} loop={true} duration={2}>
+                            {
+                                bannerImages.map((elm,id) => {
+                                    return <ProdSlide key={id} imgPath={elm}></ProdSlide>
+                                })
+                            }
+                        </CarouselWrapper>
+                    }
                 </div>
             </div>
         </section>

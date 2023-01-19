@@ -1,7 +1,7 @@
 import React from 'react';
 import './spinner.css';
 
-const Spinner = ({center,middle}) => {
+const LoadingSpinner = ({center,middle}) => {
     return (
         <div className={`${center && 'flex justify-center'} ${middle && 'items-center'}`}>
             <span className="loader"></span>
@@ -9,4 +9,4 @@ const Spinner = ({center,middle}) => {
     );
 };
 
-export default Spinner;
+export default LoadingSpinner;

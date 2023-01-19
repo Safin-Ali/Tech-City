@@ -1,7 +1,7 @@
 import React from 'react';
 import {BsImage} from 'react-icons/bs';
 
-const CategoryCard = ({category,icon}) => {
+const CategoryCard = ({category,icon,description}) => {
     return (
         <div className={`hover:shadow-[0px_0px_10px] hover:border-bluePrimary border p-3 cursor-pointer hover:shadow-blackAlpha duration-200 rounded-md`}>
             <div className={`${icon ? 'w-[60%]':'w-full'} mx-auto p-2`}>
@@ -14,11 +14,18 @@ const CategoryCard = ({category,icon}) => {
                 }
             </div>
            
-           <div className={`dark:text-whitePrimary text-center animate-pulse`}>
+           <div className={`dark:text-whitePrimary text-center`}>
             {
                 !category ?
-                <div className={`w-[95%] mx-auto h-5 rounded-lg bg-slate-300`}></div> :
-                <h3 className={`font-bold text-xl`}>{category}</h3>
+                <div className={`animate-pulse`}>
+                    <div className={`w-1/2 my-2 mx-auto h-5 rounded-lg bg-slate-300`}></div>
+                    <div className={`w-[95%] my-2 mx-auto h-5 bg-slate-300`}></div>
+                    <div className={`w-[95%] my-2 mx-auto h-5 bg-slate-300`}></div>
+                </div> :
+                <>
+                    <h3 className={`font-bold text-xl`}>{category}</h3>
+                    <p className={`text-md font-medium`}>{description}</p>
+                </>
             }
            </div>
         </div>

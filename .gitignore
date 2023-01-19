@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 
+/public/test.json
+
 # Firebase
 .firebaserc
 .firebase

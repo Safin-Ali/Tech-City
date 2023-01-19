@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { fetchCategories } from '../../app/features/categorySlice/categorySlice';
-import Spinner from '../../Components/Spinner/Spinner';
+import Spinner from '../../Components/Spinner/LoadingSpinner';
 import useFetch from '../../Hooks/useFetch';
 import CategoriesSection from './Shared/CategoriesSection';
 import Footer from './Shared/Footer';
