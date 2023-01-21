@@ -5,12 +5,15 @@ import reportWebVitals from './reportWebVitals';
 import RouteProvde from './Routes/RouteProvde';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
+import FuncContext from './Context/FuncContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <Provider store={store}>
+  <Provider store={store}>
+    <FuncContext>
       <RouteProvde/>
-    </Provider>
+    </FuncContext>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -4,13 +4,7 @@ const autoTitleChanger = (titleName) => {
 
     const title = titleName.split('/')[1];
 
-    const firstLatterUpperCase = title[0].toUpperCase();
-
-    const titleArr = [...title];
-
-    titleArr[0] = firstLatterUpperCase;
-
-    const capitalizeTitle = titleArr.join('');
+    const capitalizeTitle = title[0].toUpperCase() + title.slice(1);
 
     return document.title= `Tech City - ${capitalizeTitle}`;
 };

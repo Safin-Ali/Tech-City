@@ -10,7 +10,6 @@ const Navbar = () => {
     const [expand,setExpandBool] = useState(false);
     const [screenWidth,setScreenWidth] = useState(window.screen.width);
 
-
     const handleNavExpand = () => {
         setExpandBool(!expand);
     };
@@ -49,22 +48,25 @@ const Navbar = () => {
                 {/* Middle / ResBar Item */}
                 {
                     screenWidth < 768 && <div className={`block md:hidden px-[2.5%] md:px-0`} onClick={handleNavExpand}>
-                        <FaBars className={`text-2xl`}></FaBars>
+                        <FaBars className={`text-2xl ${expand && 'text-bluePrimary'}`}></FaBars>
                     </div>
                 }
 
                 {/* Right Content */}
-                <div className={`absolute md:flex md:static md:scale-100 ${expand ? 'scale-y-100' : 'scale-y-0'} ${screenWidth < 768 && navTransition} origin-top z-[1] w-full pl-0 top-full`}>
+                <div className={`absolute md:flex md:static md:scale-100 ${expand ? 'scale-y-100' : 'scale-y-0'} ${screenWidth < 768 && navTransition} origin-top z-[111] w-full pl-0 top-full`}>
                     <ul className={`bg-slate-200 md:ml-auto md:bg-transparent flex flex-col md:flex-row justify-center gap-3 items-center`}>
 
                         {
-                            navItems.map((item,id) => <li className={`border-b md:border-none p-2 text-center border-black w-full`} key={id}><Link
+                            navItems.map((item,id) => <li className={`border-b md:border-none p-2 text-center cursor-pointer border-black w-full`} key={id}><Link
                             to={
                                 item === 'Home' ? '/' : item.toLowerCase()
                             }>
                             {item}
                             </Link></li>)
                         }
+
+                        {/* Development Path For Controller */}
+                        <li className={`border-b md:border-none p-2 text-center cursor-pointer border-black w-full`}><Link to={'/development'}>Development</Link></li>
 
                         <li className={`p-2`}>
                             <div className={`cursor-pointer`}>

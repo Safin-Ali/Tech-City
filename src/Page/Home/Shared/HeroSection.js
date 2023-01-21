@@ -4,6 +4,7 @@ import PrimaryButton from '../../../Components/Button/PrimaryButton';
 import ProdSlide from '../../../Components/Product-Slide/ProdSlide';
 import LoadingSpinner from '../../../Components/Spinner/LoadingSpinner';
 import CarouselWrapper from 'easy-carousel-stack';
+import EmptyData from '../../../Components/Error/EmptyData';
 
 const HeroSection = () => {
 
@@ -35,11 +36,11 @@ const HeroSection = () => {
 
                         <LoadingSpinner center={true}></LoadingSpinner> :
 
-                        !bannerImages.length ?
+                        !bannerImages?.length ?
 
-                        <p>no image found</p>
+                        <EmptyData></EmptyData>
 
-                        : <CarouselWrapper itemName={`banner-product`} loop={true} duration={2}>
+                        : <CarouselWrapper itemName={`banner-product`} slideButton={true} loop={true} duration={2}>
                             {
                                 bannerImages.map((elm,id) => {
                                     return <ProdSlide key={id} imgPath={elm}></ProdSlide>

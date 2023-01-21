@@ -2,9 +2,10 @@ import React from 'react';
 import HeaderName from '../../../Components/Utilities/HeaderName';
 import { useSelector } from 'react-redux';
 import CategoryCard from '../../../Components/Card/CategoryCard';
+import EmptyData from '../../../Components/Error/EmptyData';
 
 const CategoriesSection = () => {
-    const {categoriesData,isLoading,error} = useSelector( state => state.categories);
+    const {categoriesData,isLoading} = useSelector( state => state.categories);
     return (
         <section className={`m-[5%]`}>
             <HeaderName>Choose Device</HeaderName>
@@ -17,7 +18,7 @@ const CategoriesSection = () => {
 
                     !categoriesData?.length ?
 
-                    <p>No Data Found</p> :
+                    <div className={`col-span-4`}><EmptyData></EmptyData></div> :
                     
                     categoriesData.map(elm => <CategoryCard key={elm._id} icon={elm.icon} description={elm.description} category={elm.category}></CategoryCard>)
                 }
