@@ -1,10 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {BsImage} from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 const DevDeviceCategCard = ({category,icon,}) => {
 
+    const navigate = useNavigate();
+
     return (
-        <div className={`hover:shadow-[0px_0px_10px] hover:border-bluePrimary border p-3 cursor-pointer hover:shadow-blackAlpha duration-200 rounded-md`}>
+        <div onClick={()=>navigate(`/development/${category.toLowerCase()}`)} className={`hover:shadow-[0px_0px_10px] hover:border-bluePrimary border p-3 cursor-pointer hover:shadow-blackAlpha duration-200 rounded-md`}>
             <div className={`${icon ? 'w-[60%]':'w-full'} mx-auto p-2`}>
                 {
                     !icon ?

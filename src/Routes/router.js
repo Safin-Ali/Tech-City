@@ -1,4 +1,5 @@
 import {createBrowserRouter} from 'react-router-dom';
+import ProductAddition from '../Components/Form/ProductAddition';
 import Development from '../Page/Development/Development';
 import Home from '../Page/Home/Home';
 import Main from '../Page/Main/Main';
@@ -11,6 +12,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/development', element: <Development></Development>
+            },
+            {
+                path: `/development/:device`, loader: async ({params}) => fetch (`https://tech-city.vercel.app/caregorySchema/${params.device}`) , element: <ProductAddition></ProductAddition>
             },
         ]
     },

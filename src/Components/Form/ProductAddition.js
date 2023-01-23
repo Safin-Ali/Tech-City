@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import handleDynaForm from '../../lib/dyna-form/handleDynaForm';
+import axios from 'axios';
+import { useLoaderData } from 'react-router-dom';
 
 const ProductAddition = () => {
-    return (
-        <section>
-            
-        </section>
+    const handleForm = (obj,clearForm) => {
+    };
+
+    // get loaded schema data
+    const fetchedData = useLoaderData();
+
+    console.log(fetchedData)
+
+    return (<></>
     );
 };
 
