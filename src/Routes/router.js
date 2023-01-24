@@ -14,7 +14,7 @@ export const router = createBrowserRouter([
                 path: '/development', element: <Development></Development>
             },
             {
-                path: `/development/:device`, loader: async ({params}) => fetch (`https://tech-city.vercel.app/caregorySchema/${params.device}`) , element: <ProductAddition></ProductAddition>
+                path: `/development/:device`, loader: async ({params}) => fetch (`https://tech-city.vercel.app/caregorySchema/${params.device}`) , element: <ProductAddition></ProductAddition> , errorElement: <p>Network Error</p>
             },
         ]
     },

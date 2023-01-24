@@ -19,11 +19,11 @@ const Main = () => {
 
     // auto change the web title
     autoTitleChanger(pathName)
-    
+
     return (
         <>
             <Navbar></Navbar>
-            <main className={`max-h-screen overflow-y-scroll`}>
+            <main className={`max-h-[90vh] overflow-y-scroll`}>
                 <Outlet></Outlet>
             </main>
         </>

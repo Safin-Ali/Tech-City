@@ -9,7 +9,7 @@ const Development = () => {
     const {categoriesData,isLoading} = useSelector( state => state.categories);
 
     return (
-        <section className={`m-5`}>
+        <section className={`m-[5%]`}>
 
             <HeaderName> Welcome Developer </HeaderName>
 
@@ -22,7 +22,7 @@ const Development = () => {
                         !categoriesData?.length ?
 
                         <div className={`col-span-4`}><EmptyData></EmptyData></div> :
-                        
+
                         categoriesData.map(elm => <DevDeviceCategCard key={elm._id} icon={elm.icon} category={elm.category}></DevDeviceCategCard>)
                 }
             </div>
