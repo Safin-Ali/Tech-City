@@ -7,7 +7,10 @@ const handleDynaForm = func => ev => {
     const initObj = {};
     const inputCollections = Array.from(filterChildrenInput);
     const filterNameInputOnly = inputCollections.filter(elm => !!elm.name);
-    filterNameInputOnly.forEach(elm => initObj[elm.name] = elm.value);
+    filterNameInputOnly.forEach(elm => {
+        if(elm.files) return initObj[elm.name] = elm.files;
+        initObj[elm.name] = elm.value
+    });
     if (!Object.keys(initObj).length) return console.warn("Sorry :( can't return value!!! \n Reasone ==> can't findout input element. please add input element name attribute with unique value");
     const clearForm = () => form.reset();
     return func(initObj,clearForm,form)
