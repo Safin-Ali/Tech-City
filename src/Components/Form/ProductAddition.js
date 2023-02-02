@@ -5,21 +5,52 @@ import { useLoaderData, useLocation } from 'react-router-dom';
 import ScaleFeild from '../InputFeild/ScaleFeild';
 import FileUploadFeild from '../InputFeild/FileUploadFeild';
 import PrimaryButton from '../Button/PrimaryButton';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SelectFeild from '../InputFeild/SelectFeild';
-import { MobileSchema } from '../../Schema/products/mobile/mobile';
 import EmptyData from '../Error/EmptyData';
+import {productSchemaTypeReducer} from '../../Schema/products/productTypeReducer';
+import uploadImage from '../../Hooks/uploadImage';
+import { toggleLoadPost } from '../../app/features/toggleBoolean-Slice/toggleBoolSlice';
+import LoadingSpinner01 from '../Loading-Spinner/LoadingSpinner01';
 
 const ProductAddition = () => {
 
     const [storeBrand,setBrand] = useState(null);
 
-    const handleForm = (obj,clearForm) => {
-        const mobileSchema = new MobileSchema ({...obj,brand: storeBrand});
-        console.log(mobileSchema)
-    };
-
     const location = useLocation().pathname.split('/')[2];
+
+    const {loadPost} = useSelector(state => state.toggleBool);
+
+    const dispatch = useDispatch();
+
+    // handle submited form
+    const handleForm = async (obj,clearForm) => {
+        try{
+
+            dispatch(toggleLoadPost(!loadPost));
+
+            const dynaSchema = productSchemaTypeReducer({...obj,brand: storeBrand,device:location});
+
+            // upload image
+            const imageURL = await uploadImage(dynaSchema.deviceImage);
+            dynaSchema.deviceImage = imageURL;
+            const res = await (await axios.post('http://localhost:5000/allProducts',dynaSchema)).data;
+
+            if(res === 'exist') {
+                return alert('Already have')
+            };
+
+            if(res.acknowledged) {
+                dispatch(toggleLoadPost(!loadPost));
+                alert('Post Success');
+                return clearForm();
+            }
+        }
+        catch (err) {
+            dispatch(toggleLoadPost(!loadPost));
+            console.log(err.message);
+        }
+    };
 
     // get all brandName
     const {prodBrands} = useSelector(state => state.productBrands);
@@ -90,7 +121,16 @@ const ProductAddition = () => {
                         }
                     </div>
 
-                    <div className={`text-center my-5`}><PrimaryButton padding={'px-8 py-2'}>POST</PrimaryButton></div>
+                    <div className={`text-center my-5`}>
+                        <PrimaryButton padding={'px-8 py-2'}>
+                           {
+                            loadPost ?
+                            <LoadingSpinner01 color={`#F1F2F3`} size={20}></LoadingSpinner01>
+                            :
+                            'POST'
+                           }
+                        </PrimaryButton>
+                    </div>
                 </form>
             </section>
         </>

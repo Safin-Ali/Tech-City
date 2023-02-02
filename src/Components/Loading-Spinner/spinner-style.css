@@ -1,0 +1,19 @@
+.loader01 {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 3px solid #0058FB;
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    animation: loading01 1s linear infinite;
+  }
+
+  @keyframes loading01 {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

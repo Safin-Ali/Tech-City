@@ -1,4 +1,4 @@
-export class MobileSchema {
+export class DesktopSchema {
     constructor (obj) {
     this.performance  = {
         RAM: obj['RamRam & ROM'] + ' GB',
@@ -47,7 +47,6 @@ export class MobileSchema {
     this.others = {
         year: obj.YearOthers,
         color: obj.ColorOthers,
-        model: obj.ModelOthers,
     };
 
     this.brand = obj.brand;
