@@ -34,7 +34,9 @@ const ProductAddition = () => {
             // upload image
             const imageURL = await uploadImage(dynaSchema.deviceImage);
             dynaSchema.deviceImage = imageURL;
-            const res = await (await axios.post('http://localhost:5000/allProducts',dynaSchema)).data;
+
+            // upload full schema model to the database
+            const res = await (await axios.post('https://tech-city.vercel.app/allProducts',dynaSchema)).data;
 
             if(res === 'exist') {
                 return alert('Already have')
