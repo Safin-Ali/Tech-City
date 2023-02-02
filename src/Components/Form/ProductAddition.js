@@ -12,10 +12,15 @@ import {productSchemaTypeReducer} from '../../Schema/products/productTypeReducer
 import uploadImage from '../../Hooks/uploadImage';
 import { toggleLoadPost } from '../../app/features/toggleBoolean-Slice/toggleBoolSlice';
 import LoadingSpinner01 from '../Loading-Spinner/LoadingSpinner01';
+import RadioBoxFeild from '../InputFeild/RadioBoxFeild';
 
 const ProductAddition = () => {
 
+    // set product brand
     const [storeBrand,setBrand] = useState(null);
+
+    // set product activity
+    const [prodAcv,setProdAcv] = useState(null);
 
     const location = useLocation().pathname.split('/')[2];
 
@@ -26,27 +31,26 @@ const ProductAddition = () => {
     // handle submited form
     const handleForm = async (obj,clearForm) => {
         try{
+            // dispatch(toggleLoadPost(!loadPost));
 
-            dispatch(toggleLoadPost(!loadPost));
+            const dynaSchema = productSchemaTypeReducer({...obj,brand: storeBrand,device:location,activity:prodAcv});
 
-            const dynaSchema = productSchemaTypeReducer({...obj,brand: storeBrand,device:location});
+            // // upload image
+            // const imageURL = await uploadImage(dynaSchema.deviceImage);
+            // dynaSchema.deviceImage = imageURL;
 
-            // upload image
-            const imageURL = await uploadImage(dynaSchema.deviceImage);
-            dynaSchema.deviceImage = imageURL;
+            // // upload full schema model to the database
+            // const res = await (await axios.post('https://tech-city.vercel.app/allProducts',dynaSchema)).data;
 
-            // upload full schema model to the database
-            const res = await (await axios.post('https://tech-city.vercel.app/allProducts',dynaSchema)).data;
+            // if(res === 'exist') {
+            //     return alert('Already have')
+            // };
 
-            if(res === 'exist') {
-                return alert('Already have')
-            };
-
-            if(res.acknowledged) {
-                dispatch(toggleLoadPost(!loadPost));
-                alert('Post Success');
-                return clearForm();
-            }
+            // if(res.acknowledged) {
+            //     dispatch(toggleLoadPost(!loadPost));
+            //     alert('Post Success');
+            //     return clearForm();
+            // }
         }
         catch (err) {
             dispatch(toggleLoadPost(!loadPost));
@@ -59,8 +63,8 @@ const ProductAddition = () => {
 
     // filter brandName
     const filteredBrands = prodBrands.map(obj => {
-       const lowerCaseStr = obj.product.map(str => str.toLowerCase());
-       return {...obj, product: lowerCaseStr};
+    const lowerCaseStr = obj.product.map(str => str.toLowerCase());
+    return {...obj, product: lowerCaseStr};
     }).filter( elm => elm.product.includes(location));
 
     // get loaded schema data
@@ -84,7 +88,7 @@ const ProductAddition = () => {
                                 <div key={id} className={`border p-5 rounded-md hover:shadow hover:shadow-blackAlpha`}>
                                     <h4 className={`my-2`}>{elm}</h4>
                                         {
-                                            Array.isArray(exactValue) ?
+                                            Array.isArray(exactValue) &&
 
                                             exactValue.map((childElm,childId) => {
                                                 const childElmName = Object.keys(childElm)[0];
@@ -113,11 +117,16 @@ const ProductAddition = () => {
 
                                                     </div>
                                                 </div>
-                                            }) :
-
-                                            <ScaleFeild name={`${elm+exactValue}`} value={exactValue}></ScaleFeild>
+                                            })
                                         }
-
+                                        {
+                                            elm === 'Activity' &&
+                                            <div>
+                                                <RadioBoxFeild funcHooks={setProdAcv}>Available</RadioBoxFeild>
+                                                <RadioBoxFeild funcHooks={setProdAcv}>Upcoming</RadioBoxFeild>
+                                                <RadioBoxFeild funcHooks={setProdAcv}>Unavailable</RadioBoxFeild>
+                                            </div>
+                                        }
                                 </div>
                             })
                         }
@@ -125,12 +134,12 @@ const ProductAddition = () => {
 
                     <div className={`text-center my-5`}>
                         <PrimaryButton padding={'px-8 py-2'}>
-                           {
+                        {
                             loadPost ?
                             <LoadingSpinner01 color={`#F1F2F3`} size={20}></LoadingSpinner01>
                             :
                             'POST'
-                           }
+                        }
                         </PrimaryButton>
                     </div>
                 </form>
