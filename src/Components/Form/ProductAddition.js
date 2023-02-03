@@ -31,29 +31,30 @@ const ProductAddition = () => {
     // handle submited form
     const handleForm = async (obj,clearForm) => {
         try{
-            // dispatch(toggleLoadPost(!loadPost));
+
+            dispatch(toggleLoadPost(true));
 
             const dynaSchema = productSchemaTypeReducer({...obj,brand: storeBrand,device:location,activity:prodAcv});
 
-            // // upload image
-            // const imageURL = await uploadImage(dynaSchema.deviceImage);
-            // dynaSchema.deviceImage = imageURL;
+            // upload image
+            const imageURL = await uploadImage(dynaSchema.deviceImage);
+            dynaSchema.deviceImage = imageURL;
 
-            // // upload full schema model to the database
-            // const res = await (await axios.post('https://tech-city.vercel.app/allProducts',dynaSchema)).data;
+            // upload full schema model to the database
+            const res = await (await axios.post('https://tech-city.vercel.app/allProducts',dynaSchema)).data;
 
-            // if(res === 'exist') {
-            //     return alert('Already have')
-            // };
+            if(res === 'exist') {
+                return alert('Already have')
+            };
 
-            // if(res.acknowledged) {
-            //     dispatch(toggleLoadPost(!loadPost));
-            //     alert('Post Success');
-            //     return clearForm();
-            // }
+            if(res.acknowledged) {
+                dispatch(toggleLoadPost(false));
+                alert('Post Success');
+                return clearForm();
+            }
         }
         catch (err) {
-            dispatch(toggleLoadPost(!loadPost));
+            dispatch(toggleLoadPost(false));
             console.log(err.message);
         }
     };
@@ -133,7 +134,7 @@ const ProductAddition = () => {
                     </div>
 
                     <div className={`text-center my-5`}>
-                        <PrimaryButton padding={'px-8 py-2'}>
+                        <PrimaryButton padding={'px-8 py-2'} disabled={loadPost}>
                         {
                             loadPost ?
                             <LoadingSpinner01 color={`#F1F2F3`} size={20}></LoadingSpinner01>
