@@ -40,10 +40,10 @@ export class MobileSchema {
     this.security = obj.SecuritySystem.split(',');
 
     this.price = {
-        base: obj.BasePrice + ' USD',
-        deivery: obj.DeliveryPrice + ' USD',
+        base: obj.BasePrice,
+        deivery: obj.DeliveryPrice,
         discount: obj.DiscountPrice|| 0,
-        total: Math.round(obj.BasePrice - (obj.BasePrice * obj.DiscountPrice/100)) + obj.DeliveryPrice + ' USD'
+        total: Math.round(parseInt(obj.BasePrice) - (parseInt(obj.BasePrice) * parseInt(obj.DiscountPrice)/100)) + obj.DeliveryPrice
     };
 
     this.others = {
