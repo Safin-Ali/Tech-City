@@ -33,7 +33,8 @@ export class MobileSchema {
     };
 
     this.system = {
-        android: obj.OSSystem
+        android: obj.OSSystem,
+        sensors: obj.SensorsSystem,
     };
 
     this.security = obj.SecuritySystem.split(',');
@@ -41,7 +42,8 @@ export class MobileSchema {
     this.price = {
         base: obj.BasePrice + ' USD',
         deivery: obj.DeliveryPrice + ' USD',
-        total: obj.BasePrice + obj.DeliveryPrice + ' USD'
+        discount: obj.DiscountPrice|| 0,
+        total: Math.round(obj.BasePrice - (obj.BasePrice * obj.DiscountPrice/100)) + obj.DeliveryPrice + ' USD'
     };
 
     this.others = {
@@ -53,6 +55,8 @@ export class MobileSchema {
     this.brand = obj.brand;
 
     this.device = obj.device;
+
+    this.activity = obj.activity;
 
     this.deviceImage = obj.ProductImages[0];
     };
