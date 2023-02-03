@@ -1,18 +1,35 @@
-import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { fetchProductsData } from '../../app/features/products-data-slice/productDataSlice';
 import ProductCard from '../../Components/Card/ProductCard';
 import LeftBar from '../../Components/Navbar/LeftBar';
 import RightBar from '../../Components/Navbar/RightBar';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductItems = () => {
 
-    const {products,relatedBrands} = useLoaderData();
+    const {productsData,error,isLoading} = useSelector(state => state.productsData);
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(fetchProductsData(window.location.pathname.split('/')[2]));
+    },[]);
+
+    if(!productsData.length === 0) return <p>wait</p>;
+
+    const {products,relatedBrands} = productsData;
 
     return (
         <section className={`h-full overflow-hidden`}>
             <div className={`grid grid-cols-6`}>
                 {/* Left Bar */}
-                <LeftBar></LeftBar>
+                <LeftBar>
+                    <div className={`h-[43%] border-b overflow-y-scroll`}>
+                        <ul className={`text-center`}>
+                            {relatedBrands?.map(item => <li className={`border p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
+                        </ul>
+                    </div>
+                </LeftBar>
 
                 {/* Main card Listed Item */}
                 <div className={`col-span-4`}>
