@@ -21,6 +21,15 @@ body {
   overflow: hidden;
 }
 
+.hide-scrollbar::-webkit-scrollbar{
+  display: none;
+};
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
