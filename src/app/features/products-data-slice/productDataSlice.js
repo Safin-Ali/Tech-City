@@ -11,6 +11,16 @@ export const fetchProductsData = createAsyncThunk('productsData/getProductsData'
     }
 });
 
+export const fetchProductsDeviceByBrand = createAsyncThunk('productsData/getProductsDataByDeviceBrand',async ({brand,device})=>{
+    try{
+        const res = await axios.get(`https://tech-city.vercel.app/products/${brand}/${device}`);
+        return res.data;
+    }
+    catch(error){
+        return error
+    }
+});
+
 const productsDataSlice = createSlice({
     name:'productsData',
     initialState:{
@@ -28,6 +38,19 @@ const productsDataSlice = createSlice({
             state.error = null;
         });
         builder.addCase(fetchProductsData.rejected,(state,action) =>{
+            state.isLoading = false;
+            state.productsData = null;
+            state.error = action.error.message;
+        });
+        builder.addCase(fetchProductsDeviceByBrand.pending,state =>{
+            state.isLoading = true;
+        });
+        builder.addCase(fetchProductsDeviceByBrand.fulfilled,(state,action) =>{
+            state.isLoading = false;
+            state.productsData = action.payload;
+            state.error = null;
+        });
+        builder.addCase(fetchProductsDeviceByBrand.rejected,(state,action) =>{
             state.isLoading = false;
             state.productsData = null;
             state.error = action.error.message;
