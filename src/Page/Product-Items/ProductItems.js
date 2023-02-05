@@ -16,6 +16,15 @@ const ProductItems = () => {
 
     const location = useLocation().pathname;
 
+    const navigatePath = (brandName) => {
+        if(location.split('/').length === 4) {
+            return navigate(`/products/${brandName.toLowerCase()}/${location.split('/')[3]}`);
+        }
+        else{
+            return navigate(`/products/${brandName.toLowerCase()}/${location.split('/')[2]}`);
+        };
+    }
+
     useEffect(()=>{
 
         const brand = location.split('/')[2];
@@ -34,8 +43,6 @@ const ProductItems = () => {
 
     const {products,relatedBrands} = productsData;
 
-    console.log(productsData)
-
     return (
         <section className={`h-full overflow-hidden`}>
             <div className={`grid grid-cols-6`}>
@@ -43,14 +50,14 @@ const ProductItems = () => {
                 <LeftBar>
                     <div className={`h-[43%] border-b overflow-y-scroll`}>
                         <ul className={`text-center`}>
-                            {relatedBrands?.map(item => <li onClick={()=>navigate(`/products/${item.brandName.toLowerCase()}/${location.split('/')[2]}`)} className={`border p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
+                            {relatedBrands?.map(item => <li onClick={()=>navigatePath(item.brandName)} className={`border p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
                         </ul>
                     </div>
                 </LeftBar>
 
                 {/* Main card Listed Item */}
                 <div className={`col-span-4`}>
-                    <h4 className={`text-center font-bold text-3xl capitalize mt-5`}>{window.location.pathname.split('/')[2]}</h4>
+                    <h4 className={`text-center font-bold text-3xl uppercase mt-5`}>{window.location.pathname.split('/')[2]}</h4>
                     <div className={`grid grid-cols-3 gap-5 hide-scrollbar p-[5%] overflow-y-scroll h-screen`}>
                         {
                             products?.map(elm => <ProductCard key={elm._id} data={elm}></ProductCard>)
