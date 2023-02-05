@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { fetchProductsData } from '../../app/features/products-data-slice/productDataSlice';
+import { fetchProductsData, fetchProductsDeviceByBrand } from '../../app/features/products-data-slice/productDataSlice';
 import ProductCard from '../../Components/Card/ProductCard';
 import LeftBar from '../../Components/Navbar/LeftBar';
 import RightBar from '../../Components/Navbar/RightBar';
 import { useDispatch, useSelector } from 'react-redux';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const ProductItems = () => {
 
@@ -11,13 +12,29 @@ const ProductItems = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(fetchProductsData(window.location.pathname.split('/')[2]));
-    },[]);
+    const navigate = useNavigate();
 
-    if(!productsData.length === 0) return <p>wait</p>;
+    const location = useLocation().pathname;
+
+    useEffect(()=>{
+
+        const brand = location.split('/')[2];
+
+        const device = location.split('/')[3];
+
+        if(location.split('/').length === 4) {
+            dispatch(fetchProductsDeviceByBrand({brand,device}));
+        }
+        else{
+            dispatch(fetchProductsData(location.split('/')[2]));
+        };
+    },[location]);
+
+    if(isLoading) return <p>wait</p>;
 
     const {products,relatedBrands} = productsData;
+
+    console.log(productsData)
 
     return (
         <section className={`h-full overflow-hidden`}>
@@ -26,7 +43,7 @@ const ProductItems = () => {
                 <LeftBar>
                     <div className={`h-[43%] border-b overflow-y-scroll`}>
                         <ul className={`text-center`}>
-                            {relatedBrands?.map(item => <li className={`border p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
+                            {relatedBrands?.map(item => <li onClick={()=>navigate(`/products/${item.brandName.toLowerCase()}/${location.split('/')[2]}`)} className={`border p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
                         </ul>
                     </div>
                 </LeftBar>
