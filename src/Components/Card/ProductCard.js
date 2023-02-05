@@ -1,5 +1,6 @@
 import React from 'react';
 import {BsBookmark,BsBookmarkCheckFill,BsStar,BsStarFill} from 'react-icons/bs';
+import DiscountBadge from '../Badge/DiscountBadge';
 
 const ProductCard = ({data}) => {
 
@@ -17,8 +18,11 @@ const ProductCard = ({data}) => {
             </div>
 
             {/* Product thumb */}
-            <div className={`w-1/2 mx-auto p-3`}>
-                <img src={deviceImage} alt="Product" />
+            <div className={`relative`}>
+                <div className={`w-2/3 mx-auto p-3`}>
+                    <img src={deviceImage} alt="Product" />
+                </div>
+                {!!price.discount && <DiscountBadge>{price.discount}</DiscountBadge>}
             </div>
 
             {/* content */}
