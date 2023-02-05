@@ -1,3 +1,5 @@
+import { takaToDollers } from "../../../Hooks/takaToDollers";
+
 export class MobileSchema {
     constructor(obj) {
         this.performance = {
@@ -40,10 +42,10 @@ export class MobileSchema {
         this.security = obj.SecuritySystem.split(',');
 
         this.price = {
-            base: obj.BasePrice,
-            deivery: obj.DeliveryPrice,
-            discount: obj.DiscountPrice || 0,
-            total: Math.round(parseInt(obj.BasePrice) - (parseInt(obj.BasePrice) * parseInt(obj.DiscountPrice) / 100)) + obj.DeliveryPrice
+            base: takaToDollers(obj.BasePrice),
+            deivery: takaToDollers(obj.DeliveryPrice),
+            discount: parseInt(obj.DiscountPrice) || 0,
+            total: Math.round(parseInt(takaToDollers(obj.BasePrice)) - (parseInt(takaToDollers(obj.BasePrice)) * parseInt(obj.DiscountPrice) / 100)) + takaToDollers(obj.DeliveryPrice)
         };
 
         this.others = {
