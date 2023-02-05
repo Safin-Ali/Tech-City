@@ -20,6 +20,9 @@ export const router = createBrowserRouter([
             {
                 path: `/products/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
             },
+            {
+                path: `/products/:brand/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
+            },
         ]
     },
 ]);
