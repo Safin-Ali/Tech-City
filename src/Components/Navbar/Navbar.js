@@ -19,11 +19,11 @@ const Navbar = () => {
         return setScreenWidth(window.screen.width);
     });
 
-    const navTransition = `transition duration-[400ms] cease-linear`
+    const navTransition = `transition duration-[400ms] linear`
 
     return (
-        <header className={`sticky top-0 w-full`}>
-            <nav className={`flex  md:px-[5%] bg-transparent py-[2%] gap-3 lg:py-[1%] z-[3] relative shadow justify-between items-center`}>
+        <header className={`sticky top-0 w-full z-[111]`}>
+            <nav className={`flex md:px-[5%] bg-transparent py-[2%] gap-3 lg:py-[1%] z-[3] relative shadow justify-between items-center`}>
 
                 <div className={`flex w-full gap-2 items-center`}>
                     {/* Brand Name */}
