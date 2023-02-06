@@ -7,7 +7,7 @@ const ProductCard = ({data}) => {
     const {deviceImage,brand,price,others,device} = data;
 
     return (
-        <div className={`shadow h-fit border rounded-xl`}>
+        <div className={`shadow cursor-pointer hover:scale-105 duration-300 h-fit border rounded-xl`}>
 
             {/* Product Card Button */}
             <div className={`bg-gray-100 border-b p-2 rounded-t-xl`}>

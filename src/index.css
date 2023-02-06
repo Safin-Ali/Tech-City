@@ -18,7 +18,6 @@ body {
   font-family: var(--font-DMsans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
 .hide-scrollbar::-webkit-scrollbar{

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { fetchAdditionalImgs } from '../../app/features/aditional-imagesSlice/additionalImagesSlice';
 import Navbar from '../../Components/Navbar/Navbar';
 import useFetch from '../../Hooks/useFetch';
-import {Outlet, useLocation} from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import autoTitleChanger from '../../Hooks/autoTitleChanger';
 import { fetchCategories } from '../../app/features/categorySlice/categorySlice';
 import { fetchProdBrands } from '../../app/features/product-brands/prodBrandsSlice';
@@ -24,17 +24,10 @@ const Main = () => {
     // auto change the web title
     autoTitleChanger(pathName);
 
-
-
-    // get header section height
-    const [headerSecH,setHeaderSecH] = useState(0);
-
-    useEffect(()=>setHeaderSecH(document.querySelector('header').clientHeight+'px'),[]);
-
     return (
         <>
             <Navbar></Navbar>
-            <main style={{height: `calc(100vh - ${headerSecH})`}} className={`overflow-y-scroll`}>
+            <main className={`h-full`}>
                 <Outlet></Outlet>
             </main>
         </>

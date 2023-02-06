@@ -1,8 +1,8 @@
 import React from 'react';
 
-const LeftBar = ({children}) => {
+const LeftBar = ({children,className=''}) => {
     return (
-        <aside className={`border-r h-full w-full`}>
+        <aside className={`border-r ${className} h-full w-full`}>
             {children}
         </aside>
     );

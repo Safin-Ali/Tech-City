@@ -17,12 +17,13 @@ export const router = createBrowserRouter([
             {
                 path: `/development/:device`, loader: async ({params}) => fetch (`https://tech-city.vercel.app/caregorySchema/${params.device}`) , element: <ProductAddition></ProductAddition> , errorElement: <p>Network Error</p>
             },
-            {
-                path: `/products/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
-            },
-            {
-                path: `/products/:brand/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
-            },
         ]
+    },
+
+    {
+        path: `/products/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
+    },
+    {
+        path: `/products/:brand/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
     },
 ]);

@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {BsSearch} from 'react-icons/bs';
-import {FaUserPlus,FaBars} from 'react-icons/fa';
+import { BsSearch } from 'react-icons/bs';
+import { FaUserPlus, FaBars } from 'react-icons/fa';
 
-const navItems = ['Home','Product'];
+const navItems = ['Home', 'Product'];
 
 const Navbar = () => {
 
-    const [expand,setExpandBool] = useState(false);
-    const [screenWidth,setScreenWidth] = useState(window.screen.width);
+    const [expand, setExpandBool] = useState(false);
+    const [screenWidth, setScreenWidth] = useState(window.screen.width);
 
     const handleNavExpand = () => {
         setExpandBool(!expand);
     };
 
     // auto call when screen resize
-    window.addEventListener('resize',function(){
+    window.addEventListener('resize', function () {
         return setScreenWidth(window.screen.width);
     });
 
     const navTransition = `transition duration-[400ms] cease-linear`
 
     return (
-        <header>
-            <nav className={`flex md:px-[5%] py-[2%] gap-3 lg:py-[1%] relative shadow justify-between items-center`}>
+        <header className={`sticky top-0 w-full`}>
+            <nav className={`flex  md:px-[5%] bg-transparent py-[2%] gap-3 lg:py-[1%] z-[3] relative shadow justify-between items-center`}>
 
                 <div className={`flex w-full gap-2 items-center`}>
                     {/* Brand Name */}
@@ -40,7 +40,7 @@ const Navbar = () => {
 
                         {/* Search Feild */}
                         <div className={``}>
-                            <input type="text" className={`w-full p-1 outline-none pl-3`}/>
+                            <input type="text" className={`w-full p-1 outline-none pl-3`} />
                         </div>
                     </div>
                 </div>
@@ -57,11 +57,11 @@ const Navbar = () => {
                     <ul className={`bg-slate-200 md:ml-auto md:bg-transparent flex flex-col md:flex-row justify-center gap-3 items-center`}>
 
                         {
-                            navItems.map((item,id) => <li className={`border-b md:border-none p-2 text-center cursor-pointer border-black w-full`} key={id}><Link
-                            to={
-                                item === 'Home' ? '/' : item.toLowerCase()
-                            }>
-                            {item}
+                            navItems.map((item, id) => <li className={`border-b md:border-none p-2 text-center border-black w-full`} key={id}><Link
+                                to={
+                                    item === 'Home' ? '/' : item.toLowerCase()
+                                } className="cursor-pointer">
+                                {item}
                             </Link></li>)
                         }
 
@@ -76,6 +76,7 @@ const Navbar = () => {
                     </ul>
                 </div>
             </nav>
+            <div className={`md:px-[5%] h-full inset-0 absolute backdrop-blur-sm z-[2] w-full py-[2%] gap-3 lg:py-[1%] shadow justify-between items-center`}></div>
         </header>
     );
 };
