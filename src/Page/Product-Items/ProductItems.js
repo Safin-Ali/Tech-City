@@ -6,6 +6,7 @@ import RightBar from '../../Components/Navbar/RightBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../Components/Navbar/Navbar';
+import RangeSliderFeild from '../../Components/InputFeild/RangeSliderFeild';
 
 const ProductItems = () => {
 
@@ -47,16 +48,16 @@ const ProductItems = () => {
     return (
         <>
             <main>
-                <div className={`grid grid-cols-6 overflow-hidden h-screen`}>
+                <div className={`grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 overflow-hidden h-screen`}>
 
                     {/* Navbar */}
-                    <div className={`col-span-6`}>
+                    <div className={`col-span-1 md:col-span-4 lg:col-span-6`}>
                         <Navbar></Navbar>
                     </div>
 
                     {/* Left Bar */}
-                    <LeftBar>
-                        <div className={`h-[80%] border-b overflow-y-scroll`}>
+                    <LeftBar className={`hidden md:block `}>
+                        <div className={`max-h-[80%] border-b overflow-y-scroll`}>
                             <ul className={`text-center`}>
                                 {relatedBrands?.map(item => <li onClick={() => navigatePath(item.brandName)} className={`border-y p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
                             </ul>
@@ -64,9 +65,9 @@ const ProductItems = () => {
                     </LeftBar>
 
                     {/* Main card Listed Item */}
-                    <div className={`col-span-4 h-full overflow-y-scroll cursor-n-resize`}>
+                    <div className={`col-span-1 md:col-span-3 lg:col-span-4 h-full overflow-y-scroll cursor-n-resize`}>
                         <h4 className={`text-center font-bold text-3xl uppercase mt-5`}>{window.location.pathname.split('/')[2]}</h4>
-                        <div className={`grid grid-cols-3 gap-5 hide-scrollbar p-[5%] overflow-y-scroll h-screen`}>
+                        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 hide-scrollbar p-[5%] overflow-y-scroll`}>
                             {
                                 products?.map(elm => <ProductCard key={elm._id} data={elm}></ProductCard>)
                             }
@@ -74,7 +75,7 @@ const ProductItems = () => {
                     </div>
 
                     {/* Right Bar */}
-                    <RightBar></RightBar>
+                    <RightBar className={`hidden lg:block`}></RightBar>
                 </div>
             </main>
         </>
