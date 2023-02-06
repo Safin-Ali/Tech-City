@@ -1,8 +1,8 @@
 import React from 'react';
 
-const RightBar = ({children,className=''}) => {
+const RightBar = ({children,className='',width=0,top=0}) => {
     return (
-        <aside className={`border-l ${className} w-full h-full`}>
+        <aside style={{width:`${width}px`,top:`${top}px`}} className={`border-l ${className} w-full h-full`}>
             {children}
         </aside>
     );

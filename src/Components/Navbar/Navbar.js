@@ -40,7 +40,7 @@ const Navbar = () => {
 
                         {/* Search Feild */}
                         <div className={``}>
-                            <input type="text" className={`w-full p-1 outline-none pl-3`} />
+                            <input type="text" className={`w-full p-1 outline-none bg-transparent pl-3`} />
                         </div>
                     </div>
                 </div>
