@@ -31,7 +31,7 @@ const ProductCard = ({data}) => {
                 {/* product model */}
                 <div className={`text-center text-xl my-1 font-medium`}><h5>{others.model}</h5></div>
                 <div className={`flex justify-around`}>
-                    <div className={`border rounded px-1`}><span className={`font-medium`}>{brand}</span></div>
+                    <div className={`border rounded uppercase px-1`}><span className={`font-medium`}>{brand}</span></div>
                     <div className={`border rounded-md px-2 py-0.5`}><span className={`font-medium`}>${price.total}</span></div>
                 </div>
             </div>
