@@ -74,6 +74,10 @@ const ProductItems = () => {
                             {relatedBrands?.map(item => <li onClick={() => navigatePath(item.brandName)} className={`border-y p-2 cursor-pointer my-2`} key={item._id}>{item.brandName}</li>)}
                         </ul>
                     </div>
+
+                    <div>
+                        <RangeSliderFeild></RangeSliderFeild>
+                    </div>
                 </LeftBar>
 
                 {/* Main card Listed Item */}

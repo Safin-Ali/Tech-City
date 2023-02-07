@@ -22,7 +22,7 @@ const Navbar = () => {
     const navTransition = `transition duration-[400ms] linear`
 
     return (
-        <header className={`sticky backdrop-blur-sm top-0 w-full z-[111]`}>
+        <header className={`sticky top-0 w-full z-[111]`}>
             <nav className={`flex md:px-[5%] bg-transparent py-[2%] gap-3 lg:py-[1%] z-[3] relative shadow justify-between items-center`}>
 
                 <div className={`flex w-full gap-2 items-center`}>
@@ -54,7 +54,7 @@ const Navbar = () => {
 
                 {/* Right Content */}
                 <div className={`absolute md:flex md:static md:scale-100 ${expand ? 'scale-y-100' : 'scale-y-0'} ${screenWidth < 768 && navTransition} origin-top z-[111] w-full pl-0 top-full`}>
-                    <ul className={`backdrop-blur-sm bg-transparent md:ml-auto md:bg-transparent flex flex-col md:flex-row justify-center gap-3 items-center`}>
+                    <ul className={`bg-transparent backdrop-blur-sm md:ml-auto md:bg-transparent flex flex-col md:flex-row justify-center gap-3 items-center`}>
 
                         {
                             navItems.map((item, id) => <li className={`border-b md:border-none p-2 text-center border-black w-full`} key={id}><Link
@@ -76,6 +76,7 @@ const Navbar = () => {
                     </ul>
                 </div>
             </nav>
+            <div className={`md:px-[5%] h-full inset-0 absolute backdrop-blur-sm z-[2] w-full py-[2%] gap-3 lg:py-[1%] shadow justify-between items-center`}></div>
         </header>
     );
 };

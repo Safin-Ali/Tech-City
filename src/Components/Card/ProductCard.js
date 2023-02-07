@@ -1,13 +1,14 @@
 import React from 'react';
-import {BsBookmark,BsBookmarkCheckFill,BsStar,BsStarFill} from 'react-icons/bs';
+import { BsBookmark, BsBookmarkCheckFill, BsStar, BsStarFill } from 'react-icons/bs';
 import DiscountBadge from '../Badge/DiscountBadge';
+import PrimaryButton from '../Button/PrimaryButton';
 
-const ProductCard = ({data}) => {
+const ProductCard = ({ data }) => {
 
-    const {deviceImage,brand,price,others,device} = data;
+    const { deviceImage, brand, price, others, device, activity } = data;
 
     return (
-        <div className={`shadow cursor-pointer hover:scale-105 duration-300 h-fit border rounded-xl`}>
+        <div className={`shadow cursor-auto hover:scale-105 duration-300 h-fit border rounded-xl`}>
 
             {/* Product Card Button */}
             <div className={`bg-gray-100 border-b p-2 rounded-t-xl`}>
@@ -30,9 +31,26 @@ const ProductCard = ({data}) => {
 
                 {/* product model */}
                 <div className={`text-center text-xl my-1 font-medium`}><h5>{others.model}</h5></div>
-                <div className={`flex justify-around`}>
-                    <div className={`border rounded uppercase px-1`}><span className={`font-medium`}>{brand}</span></div>
-                    <div className={`border rounded-md px-2 py-0.5`}><span className={`font-medium`}>${price.total}</span></div>
+
+                <div className={`flex mt-3 justify-around`}>
+                    <div className={`border min-w-[70px] rounded px-1`}><span className={`text-center p-3 font-semibold text-xl`}>${price.total}</span></div>
+                    <div className={`min-w-[70px] rounded-md px-2 py-0.5`}>
+                        <div className={`flex gap-1 items-center`}>
+                            {
+                                [...Array(4).keys()].map(elm => <BsStarFill color={'#FCC73B'} key={elm}></BsStarFill>)
+                            }
+                            <BsStar color={'#FCC73B'}></BsStar>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={`flex mt-3 justify-around`}>
+                    <div className={`border min-w-[70px] rounded uppercase px-1`}><span className={`font-semibold text-center`}>{brand}</span></div>
+                    <div className={`border min-w-[70px] ${activity === 'unavailable' ? 'border-red-600 text-red-600' : 'border-green-600 text-green-600'} capitalize rounded-md px-2 py-0.5`}><span className={`font-medium text-center`}>{activity}</span></div>
+                </div>
+
+                <div className={`mt-5 text-center`}>
+                    <PrimaryButton padding={`px-5 py-1.5`}>Buy Now</PrimaryButton>
                 </div>
             </div>
         </div>
