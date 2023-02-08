@@ -42,7 +42,8 @@ const Footer = () => {
                     {/* Second Columns */}
                     <div className={`text-whitePrimary md:justify-self-center`}>
                         <h4 className={`font-semibold text-xl`}>About the Tech City</h4>
-                        <p className={`font-medium text-gray-400 my-5`}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit et error quo voluptas</p>
+                        <p className={`font-medium text-gray-400 my-5`}>Tech City is a trusted technology device base virtual shoping mall. Here you can buy latest technology based device with impressive discount and delivery time.
+                        <strong> `Mind It Tech City Mean Trust City`</strong></p>
                     </div>
 
                     {/* Theree Columns */}
@@ -65,7 +66,7 @@ const Footer = () => {
                         </div>
                     </div>
 
-                <div className={`col-span-3 text-center text-whitePrimary`}><i>© 2022 SA Safin Ali. All Rights Reserved.</i></div>
+                <div className={`col-span-3 text-center text-whitePrimary`}><i>© {new Date().getFullYear()} Safin Ali. All Rights Reserved.</i></div>
         </footer>
     );
 };

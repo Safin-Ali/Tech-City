@@ -25,7 +25,9 @@ const HeroSection = () => {
                 {/* Text Section */}
                 <div className={`basis-1/2 order-2 md:order-none`}>
                     <h2 className={`text-3xl dark:text-whitePrimary font-bold font-mincho`}>Tech <span className={`text-bluePrimary`}>City</span></h2>
-                    <h5 className={`my-5 text-xl md:text-2xl font-medium dark:text-whitePrimary`}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, deserunt! Autem dolore quos ex quisquam necessitatibus iure ipsum minima maiores, possimus odio vel impedit voluptate nulla laboriosam dolorem animi? Quidem.</h5>
+                    <h5 className={`my-5 capitalize text-xl md:text-2xl font-medium dark:text-whitePrimary`}>
+                        Welcome Sir, good Morning. Here you  find latest Technology Products. currently you can but Desktop
+                    </h5>
                     <PrimaryButton>See Product</PrimaryButton>
                 </div>
 
