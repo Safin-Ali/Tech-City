@@ -1,11 +1,19 @@
 import React from 'react';
 import { BsBookmark, BsBookmarkCheckFill, BsStar, BsStarFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 import DiscountBadge from '../Badge/DiscountBadge';
 import PrimaryButton from '../Button/PrimaryButton';
 
 const ProductCard = ({ data }) => {
 
-    const { deviceImage, brand, price, others, device, activity } = data;
+    // destrucred product data
+    const { deviceImage, brand, price, others, device, _id, activity } = data;
+
+    // navigate hooks for change current url path
+    const navigate = useNavigate();
+
+    // navigate product single page
+    const navigateProduct = (brand,device,id) => navigate(`/product/${brand}/${device}/${id}`,{state:data})
 
     return (
         <div className={`shadow cursor-auto hover:scale-105 duration-300 h-fit border rounded-xl`}>
@@ -50,7 +58,7 @@ const ProductCard = ({ data }) => {
                 </div>
 
                 <div className={`mt-5 text-center`}>
-                    <PrimaryButton padding={`px-5 py-1.5`}>Buy Now</PrimaryButton>
+                    <PrimaryButton onClick={()=>navigateProduct(brand,device,_id)} padding={`px-5 py-1.5`}>Buy Now</PrimaryButton>
                 </div>
             </div>
         </div>

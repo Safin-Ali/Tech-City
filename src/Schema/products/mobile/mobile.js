@@ -43,7 +43,7 @@ export class MobileSchema {
 
         this.price = {
             base: takaToDollers(obj.BasePrice),
-            deivery: takaToDollers(obj.DeliveryPrice),
+            delivery: takaToDollers(obj.DeliveryPrice),
             discount: parseInt(obj.DiscountPrice) || 0,
             total: Math.round(parseInt(takaToDollers(obj.BasePrice)) - (parseInt(takaToDollers(obj.BasePrice)) * parseInt(obj.DiscountPrice) / 100)) + takaToDollers(obj.DeliveryPrice)
         };

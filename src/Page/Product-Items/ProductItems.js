@@ -9,12 +9,16 @@ import RangeSliderFeild from '../../Components/InputFeild/RangeSliderFeild';
 
 const ProductItems = () => {
 
+    // select products-items and categoris data from redux
     const { productsData: { productsData, error, isLoading }, categories } = useSelector(state => state);
 
+    // dispatch call back function
     const dispatch = useDispatch();
 
+    // navigate hooks for change current url path
     const navigate = useNavigate();
 
+    // get current location pathname
     const location = useLocation().pathname;
 
     // get location brand params
@@ -35,8 +39,10 @@ const ProductItems = () => {
         return categoriesData(location.split('/')[2]);
     })();
 
+    // store and set layout width,margin
     const [layoutUnit, setLayoutUnit] = useState(null);
 
+    // navigat others related brands
     const navigatePath = (brandName) => {
         if (location.split('/').length === 4) {
             return navigate(`/products/${brandName.toLowerCase()}/${location.split('/')[3]}`);
@@ -77,9 +83,12 @@ const ProductItems = () => {
         return setLayoutUnit({ sideBarWidth, headerHeight, mrBool });
     };
 
+    // if data loading
     if (isLoading) return <p>wait</p>;
 
+    // distrucred producs data
     const { products, relatedBrands, upComingProducts } = productsData;
+
     return (
         <>
 

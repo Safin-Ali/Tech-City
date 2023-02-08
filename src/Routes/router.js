@@ -4,6 +4,7 @@ import Development from '../Page/Development/Development';
 import Home from '../Page/Home/Home';
 import Main from '../Page/Main/Main';
 import ProductItems from '../Page/Product-Items/ProductItems';
+import SingleProduct from '../Page/Product-Items/SingleProduct';
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: `/products/:brand/:device`, element: <ProductItems></ProductItems> , errorElement: <p>Network Error</p>
+            },
+            {
+                path: `/product/:brand/:device/:id`, loader:async ({params})=> fetch(`https://tech-city.vercel.app/product/${params.id}`), element: <SingleProduct></SingleProduct> , errorElement: <p>Network Error</p>
             },
         ]
     },
